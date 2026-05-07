@@ -49,7 +49,7 @@ export function OrderList({ orders }: OrderListProps) {
           {/* Order header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 px-4 sm:px-6 py-4 bg-muted/30 border-b">
             <div className="flex flex-col xs:flex-row xs:items-center gap-1 xs:gap-4">
-              <p className="font-semibold text-sm">{order.orderNumber ?? `#${order.id.slice(0, 8)}`}</p>
+              <p className="font-semibold text-sm">{order.displayId ?? `#${order.id.slice(0, 8)}`}</p>
               <p className="text-xs text-muted-foreground">{formatDate(order.createdAt)}</p>
             </div>
             <div className="flex items-center gap-3">
