@@ -25,7 +25,7 @@ export class CartController {
   @Get()
   @Public()
   @ApiOperation({ summary: 'Get cart' })
-  getCart(@Req() req: Request, @CurrentUser() user?: { id: string }) {
+  getCart(@Req() req: Request, @CurrentUser() user?: { id: string }): Promise<any> {
     return this.cartService.getOrCreate(this.getCartId(req, user), user?.id);
   }
 
@@ -36,7 +36,7 @@ export class CartController {
     @Req() req: Request,
     @Body() dto: AddItemDto,
     @CurrentUser() user?: { id: string },
-  ) {
+  ): Promise<any> {
     return this.cartService.addItem(this.getCartId(req, user), dto.productId, dto.variantId, dto.quantity, user?.id);
   }
 
@@ -48,7 +48,7 @@ export class CartController {
     @Param('itemId') itemId: string,
     @Body('quantity') quantity: number,
     @CurrentUser() user?: { id: string },
-  ) {
+  ): Promise<any> {
     return this.cartService.updateItem(this.getCartId(req, user), itemId, quantity);
   }
 
@@ -59,7 +59,7 @@ export class CartController {
     @Req() req: Request,
     @Param('itemId') itemId: string,
     @CurrentUser() user?: { id: string },
-  ) {
+  ): Promise<any> {
     return this.cartService.removeItem(this.getCartId(req, user), itemId);
   }
 
