@@ -1,9 +1,9 @@
 import { Processor, WorkerHost } from '@nestjs/bullmq';
 import { Logger } from '@nestjs/common';
 import { Job } from 'bullmq';
-import { NOTIFICATION_QUEUE, type NotificationJob } from '../queue.module';
+import { NOTIFICATION_QUEUE } from '../queue.module';
+import { type NotificationJob } from '../queue.service';
 
-// Re-export type for processor use
 type NJob = NotificationJob & { type: string };
 
 @Processor(NOTIFICATION_QUEUE)

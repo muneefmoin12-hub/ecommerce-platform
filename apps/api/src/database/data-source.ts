@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
-import * as dotenv from 'dotenv';
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const dotenv = require('dotenv') as { config: (opts: object) => void };
 import * as path from 'path';
 
 dotenv.config({ path: path.resolve(process.cwd(), '../../.env.local') });

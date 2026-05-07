@@ -95,7 +95,7 @@ export class CartService implements OnModuleInit {
     userId?: string,
   ): Promise<Cart> {
     const product = await this.productsService.findOne(productId);
-    const variant = product.variants?.find((v: any) => v.id === variantId);
+    const variant = product.variants?.find((v: any) => v.id === variantId) as any;
     if (!variant) throw new NotFoundException('Variant not found');
 
     const cart = await this.getOrCreate(cartId, userId);
@@ -108,10 +108,10 @@ export class CartService implements OnModuleInit {
       productId,
       variantId,
       quantity,
-      unitPrice: variant.price,
+      unitPrice: (variant as any).price,
       productName: product.name,
-      variantTitle: variant.title ?? 'Default',
-      imageUrl: product.images?.[0]?.url,
+      variantTitle: (variant as any).title ?? 'Default',
+      imageUrl: (product.images as any)?.[0]?.url,
     };
 
     if (existingIndex >= 0) {

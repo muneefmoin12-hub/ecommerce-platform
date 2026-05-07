@@ -32,10 +32,10 @@ import { winstonConfig } from './logging/winston.config';
 
     ThrottlerModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
+      useFactory: (config: ConfigService) => ([{
         ttl: config.get('RATE_LIMIT_TTL', 60),
         limit: config.get('RATE_LIMIT_MAX', 100),
-      }),
+      }]),
     }),
 
     EventEmitterModule.forRoot({ wildcard: false, maxListeners: 20 }),
