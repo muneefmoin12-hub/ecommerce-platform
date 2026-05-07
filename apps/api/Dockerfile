@@ -1,0 +1,36 @@
+FROM node:20-alpine AS builder
+
+RUN npm install -g pnpm@9
+
+WORKDIR /app
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml* ./
+COPY packages/ ./packages/
+COPY apps/api/package.json ./apps/api/
+COPY tsconfig.base.json ./
+
+RUN pnpm install --frozen-lockfile
+
+COPY apps/api/ ./apps/api/
+
+WORKDIR /app/apps/api
+RUN pnpm build
+
+FROM node:20-alpine AS runner
+
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nestjs
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+COPY --from=builder /app/apps/api/dist ./dist
+COPY --from=builder /app/apps/api/package.json ./
+COPY --from=builder /app/apps/api/node_modules ./node_modules
+
+RUN mkdir -p logs && chown -R nestjs:nodejs .
+USER nestjs
+
+EXPOSE 3001
+
+CMD ["node", "dist/main"]
