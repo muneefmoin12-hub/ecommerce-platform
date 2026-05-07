@@ -1,0 +1,13 @@
+[build]
+  base    = "."
+  command = "cd apps/web && pnpm build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION    = "20"
+  PNPM_VERSION    = "9"
+  NPM_FLAGS       = "--version"
+  TURBO_TELEMETRY_DISABLED = "1"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

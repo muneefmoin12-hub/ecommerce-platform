@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Brand: Warm Amber / Cognac ───────────────────────── */
+    --background:    0 0% 100%;
+    --foreground:    20 25% 8%;
+
+    --card:          0 0% 100%;
+    --card-foreground: 20 25% 8%;
+
+    --popover:       0 0% 100%;
+    --popover-foreground: 20 25% 8%;
+
+    /* Primary = rich amber-cognac (#d4691d) */
+    --primary:       27 74% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary = warm cream */
+    --secondary:     34 30% 95%;
+    --secondary-foreground: 27 40% 20%;
+
+    --muted:         34 20% 95%;
+    --muted-foreground: 20 10% 48%;
+
+    --accent:        34 30% 93%;
+    --accent-foreground: 27 50% 18%;
+
+    --destructive:   0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:        34 20% 88%;
+    --input:         34 20% 88%;
+    --ring:          27 74% 47%;
+
+    --radius:        0.6rem;
+
+    --font-sans: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .dark {
+    --background:    20 20% 6%;
+    --foreground:    34 15% 96%;
+
+    --card:          20 20% 9%;
+    --card-foreground: 34 15% 96%;
+
+    --popover:       20 20% 9%;
+    --popover-foreground: 34 15% 96%;
+
+    --primary:       27 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary:     20 20% 16%;
+    --secondary-foreground: 34 15% 90%;
+
+    --muted:         20 20% 14%;
+    --muted-foreground: 20 10% 58%;
+
+    --accent:        20 20% 18%;
+    --accent-foreground: 34 15% 90%;
+
+    --destructive:   0 62% 38%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border:        20 20% 18%;
+    --input:         20 20% 18%;
+    --ring:          27 80% 55%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  h1, h2, h3 { letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* Gradient text utility */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(27,74%,47%) 0%, hsl(14,80%,55%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}

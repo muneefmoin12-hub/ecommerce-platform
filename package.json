@@ -1,0 +1,40 @@
+{
+  "name": "ecommerce-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Enterprise-grade e-commerce platform monorepo",
+  "scripts": {
+    "dev": "turbo run dev",
+    "dev:web": "turbo run dev --filter=@ecommerce/web",
+    "dev:api": "turbo run dev --filter=@ecommerce/api",
+    "dev:admin": "turbo run dev --filter=@ecommerce/admin",
+    "dev:medusa": "turbo run dev --filter=@ecommerce/medusa",
+    "dev:studio": "turbo run dev --filter=@ecommerce/studio",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "turbo run format",
+    "type-check": "turbo run type-check",
+    "clean": "turbo run clean && rimraf node_modules",
+    "db:up": "cd apps/api && docker compose up -d",
+    "db:down": "cd apps/api && docker compose down",
+    "db:migrate": "cd apps/api && npm run migration:run",
+    "db:migrate:revert": "cd apps/api && npm run migration:revert",
+    "db:seed": "cd apps/api && npm run seed",
+    "medusa:migrate": "cd apps/medusa && pnpm migrate",
+    "medusa:seed": "cd apps/medusa && pnpm seed",
+    "studio:deploy": "cd apps/studio && pnpm deploy"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.2.0",
+    "rimraf": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@9.0.0"
+}
