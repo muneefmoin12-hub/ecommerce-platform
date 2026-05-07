@@ -23,7 +23,8 @@ export class SearchService implements OnModuleInit {
 
   async onModuleInit() {
     try {
-      this.productsIndex = await this.client.getOrCreateIndex(PRODUCTS_INDEX, { primaryKey: 'id' });
+      await this.client.createIndex(PRODUCTS_INDEX, { primaryKey: 'id' }).catch(() => {});
+      this.productsIndex = this.client.index(PRODUCTS_INDEX);
 
       // Configure searchable attributes and filters
       await this.productsIndex.updateSettings({

@@ -4,7 +4,11 @@ import { Repository } from 'typeorm';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Order } from '../../database/entities/order.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
-import { generateOrderId } from '@ecommerce/utils';
+function generateOrderId(): string {
+  const timestamp = Date.now().toString(36).toUpperCase();
+  const random = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `ORD-${timestamp}-${random}`;
+}
 import type { OrdersQuery } from '@ecommerce/types';
 
 @Injectable()
